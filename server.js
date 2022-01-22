@@ -4,6 +4,8 @@
 // init project
 var express = require('express');
 var app = express();
+var bGround = require('fcc-express-bground');
+var myApp = require('./myApp');
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
@@ -25,8 +27,12 @@ app.get("/api/hello", function (req, res) {
 });
 
 
-
 // listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+// var listener = app.listen(process.env.PORT, function () {
+//   console.log('Your app is listening on port ' + 'http://localhost:' + listener.address().port);
+// });
+
+var port = process.env.PORT || 3000;
+bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, function() {
+  bGround.log('Node is listening on port ' + 'http://localhost:' + port);
+})
