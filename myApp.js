@@ -16,7 +16,9 @@ app.get('/', function (req, res) {
 
 // api date that returns a JSON object with a unix key and utc key
 app.get("/api/:date?", function (req,res) {
-    res.json({greeting: 'hello api date'});   
+    const test = req.params.date;
+    res.json(({greeting: 'hello api date',
+            temp: test}));   
 })
 
 // api unix that returns a JSON object with a unix key and utc key
